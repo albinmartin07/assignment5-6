@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <style>
+    body 
+    {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .container 
+      {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 0px;
+        border: 0px solid #ccc;
+        border-radius: 5px;
+      }
+      
+      
+      button 
+      {
+        border-radius: 20px; 
+        padding: 10px 20px; 
+        font-size: 16px; 
+        background-color: #007bff; 
+        color: #fff; 
+        border: none; 
+        cursor: pointer;
+      }
+      
+      button:hover 
+      {
+        background-color: #0056b3;
+      }
+
+      .merged-input-container 
+      {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .merged-input-container input,
+      .merged-input-container select {
+        padding: 22px; 
+        font-size: 16px; 
+        border: 2px solid #000; 
+        border-radius: 5px;
+        width: calc(50% - 0px); 
+        box-sizing: border-box;
+      }
+      
+      .merged-input-container input 
+      {
+        border-top-right-radius: 0;
+        width: 300px;; 
+        border-bottom-right-radius: 0;
+      }
+      
+      .merged-input-container select 
+      {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-left: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div style="background-color: blue;text-align:center;">
+    <h1>US to Canadian Dollar</h1>
+    <h2>Convert USD to CAD at real exchange rate</h2>
+    </div>
+
+    <div style="text-align:center;">
+    <div class="merged-input-container">
+    <input type="text" id="amount" placeholder="Enter Amount">
+      <select id="Value1">
+        <option value="CAD1">CAD</option>
+        <option value="USD1">USD</option>
+      </select>
+    </div>
+
+      <div class="merged-input-container">
+        <input type="text" id="result" placeholder="Coverted Amount"  readonly>
+      <select id="Value2">
+        <option value="CAD2">CAD</option>
+        <option value="USD2">USD</option>
+      </select>
+    </div>
+    </div>
+
+
+    <br><br><br>
+    <button onclick="convert()">Convert</button>
+  </div>
+
+
+<script>
+
+function convert() 
+{
+      const CAD_TO_USD_RATE = 0.75;
+      const USD_TO_CAD_RATE = 1.33;
+
+      var selectElement = document.getElementById("Value1");
+      var selectedValue = selectElement.value;
+
+      if (selectedValue == 'CAD1') {
+        const cadAmount = parseFloat(document.getElementById('amount').value);
+        if (!isNaN(cadAmount)) {
+            const usdResult = (cadAmount * CAD_TO_USD_RATE).toFixed(3);
+            document.getElementById('result').value = usdResult + "USD";
+        } else {
+          alert('Please enter a valid CAD amount');
+        }
+      }
+
+      else {
+        const usdAmount = parseFloat(document.getElementById('amount').value);
+        if (!isNaN(usdAmount)) {
+            const cadResult = (usdAmount * USD_TO_CAD_RATE).toFixed(3);
+            document.getElementById('result').value = cadResult + "CAD";
+        } else {
+          alert('Please enter a valid USD amount');
+        }
+      }
+
+}
+  
+</script>
+
+
+</body>
+</html>
